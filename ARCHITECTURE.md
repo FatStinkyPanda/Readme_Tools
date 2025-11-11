@@ -17,7 +17,7 @@ Main tool for breaking down large README files into categorized, searchable part
   - Content block identification
 
 - **AI Categorizer** (`categorizer.py`)
-  - Multi-provider AI integration (OpenAI, Anthropic, Ollama)
+  - Multi-provider AI integration (OpenAI, Anthropic, OpenRouter, Ollama)
   - Intelligent category detection
   - Keyword and tag generation
   - Section summarization
@@ -67,6 +67,7 @@ Abstraction layer for multiple AI providers.
 **Providers:**
 - `openai_adapter.py` - OpenAI GPT-4/GPT-4-turbo
 - `anthropic_adapter.py` - Anthropic Claude
+- `openrouter_adapter.py` - OpenRouter (unified access to 100+ models)
 - `ollama_adapter.py` - Local Ollama models
 - `base_adapter.py` - Common interface
 

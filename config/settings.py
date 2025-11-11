@@ -35,10 +35,19 @@ class Settings(BaseSettings):
     # AI Providers
     openai_api_key: str | None = Field(default=None, alias="OPENAI_API_KEY")
     anthropic_api_key: str | None = Field(default=None, alias="ANTHROPIC_API_KEY")
+    openrouter_api_key: str | None = Field(default=None, alias="OPENROUTER_API_KEY")
 
     # AI Configuration
     default_ai_provider: str = Field(default="openai", alias="DEFAULT_AI_PROVIDER")
     default_model: str = Field(default="gpt-4-turbo", alias="DEFAULT_MODEL")
+
+    # OpenRouter
+    openrouter_base_url: str = Field(
+        default="https://openrouter.ai/api/v1", alias="OPENROUTER_BASE_URL"
+    )
+    openrouter_model: str = Field(
+        default="anthropic/claude-3-sonnet", alias="OPENROUTER_MODEL"
+    )
 
     # Ollama
     ollama_base_url: str = Field(default="http://localhost:11434", alias="OLLAMA_BASE_URL")

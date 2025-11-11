@@ -6,6 +6,7 @@ from .base_adapter import BaseAIAdapter
 from .anthropic_adapter import AnthropicAdapter
 from .ollama_adapter import OllamaAdapter
 from .openai_adapter import OpenAIAdapter
+from .openrouter_adapter import OpenRouterAdapter
 
 
 def get_ai_adapter(
@@ -18,10 +19,10 @@ def get_ai_adapter(
     """Get an AI adapter instance.
 
     Args:
-        provider: Provider name ("openai", "anthropic", or "ollama")
-        api_key: API key (required for openai and anthropic)
+        provider: Provider name ("openai", "anthropic", "openrouter", or "ollama")
+        api_key: API key (required for openai, anthropic, and openrouter)
         model: Model name (optional, uses default if not specified)
-        base_url: Base URL (for ollama)
+        base_url: Base URL (for ollama or custom endpoints)
         **kwargs: Additional provider-specific arguments
 
     Returns:
@@ -50,6 +51,16 @@ def get_ai_adapter(
             **kwargs,
         )
 
+    elif provider == "openrouter":
+        if not api_key:
+            raise ValueError("API key required for OpenRouter provider")
+        return OpenRouterAdapter(
+            api_key=api_key,
+            model=model or "anthropic/claude-3-sonnet",
+            base_url=base_url or "https://openrouter.ai/api/v1",
+            **kwargs,
+        )
+
     elif provider == "ollama":
         return OllamaAdapter(
             base_url=base_url or "http://localhost:11434",
@@ -60,5 +71,5 @@ def get_ai_adapter(
     else:
         raise ValueError(
             f"Unknown provider: {provider}. "
-            f"Supported providers: openai, anthropic, ollama"
+            f"Supported providers: openai, anthropic, openrouter, ollama"
         )

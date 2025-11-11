@@ -41,7 +41,12 @@ cp .env.example .env
 
 2. **Edit `.env` and add your API key**
 ```env
-# For OpenAI
+# For OpenRouter (Recommended - access to 100+ models)
+OPENROUTER_API_KEY=sk-or-v1-...
+DEFAULT_AI_PROVIDER=openrouter
+DEFAULT_MODEL=anthropic/claude-3-sonnet
+
+# Or for OpenAI
 OPENAI_API_KEY=sk-...
 DEFAULT_AI_PROVIDER=openai
 DEFAULT_MODEL=gpt-4-turbo
@@ -203,6 +208,7 @@ pip install -r requirements.txt
 ```
 
 ### AI provider not working
+- **OpenRouter**: Verify your API key at https://openrouter.ai/keys - Check available models at https://openrouter.ai/models
 - **OpenAI**: Verify your API key at https://platform.openai.com/api-keys
 - **Anthropic**: Verify your API key at https://console.anthropic.com/
 - **Ollama**: Make sure Ollama is running (`ollama serve`)

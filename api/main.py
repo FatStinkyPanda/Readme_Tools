@@ -120,13 +120,17 @@ async def parse_readme(request: ParseReadmeRequest):
             raise HTTPException(status_code=400, detail="Either file_path or content required")
 
         # Initialize AI adapter
+        api_key = None
+        if request.ai_provider == "openai":
+            api_key = settings.openai_api_key
+        elif request.ai_provider == "anthropic":
+            api_key = settings.anthropic_api_key
+        elif request.ai_provider == "openrouter":
+            api_key = settings.openrouter_api_key
+
         ai_adapter = get_ai_adapter(
             provider=request.ai_provider,
-            api_key=(
-                settings.openai_api_key
-                if request.ai_provider == "openai"
-                else settings.anthropic_api_key
-            ),
+            api_key=api_key,
             model=request.model,
         )
 

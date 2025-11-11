@@ -21,7 +21,7 @@ The first and primary tool in the suite:
 - **Section Discovery**: Find relevant documentation sections quickly with powerful search
 - **AI Agent Integration**: Optimized for providing context to AI agents with intelligent section delivery
 - **RESTful API**: Comprehensive API endpoints for programmatic access
-- **Multi-Provider AI**: Support for OpenAI, Anthropic Claude, and local Ollama models
+- **Multi-Provider AI**: Support for OpenAI, Anthropic Claude, OpenRouter (unified access to 100+ models), and local Ollama models
 
 ### Key Capabilities
 
@@ -40,7 +40,7 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for detailed system design.
 - **Python 3.11+** - Modern Python with async support
 - **FastAPI** - High-performance API framework with auto-generated docs
 - **SQLite FTS5** - Lightweight full-text search
-- **Multi-AI Provider** - OpenAI GPT-4, Anthropic Claude, or local Ollama
+- **Multi-AI Provider** - OpenAI GPT-4, Anthropic Claude, OpenRouter (100+ models), or local Ollama
 
 ### Project Structure
 
@@ -125,11 +125,18 @@ curl -X POST "http://localhost:8000/api/v1/readme/parse" \
   -H "Content-Type: application/json" \
   -d '{
     "file_path": "path/to/README.md",
-    "options": {
-      "ai_provider": "openai",
-      "model": "gpt-4-turbo"
-    }
+    "ai_provider": "openrouter",
+    "model": "anthropic/claude-3-sonnet"
   }'
+
+# Or with OpenAI:
+# "ai_provider": "openai", "model": "gpt-4-turbo"
+
+# Or with Anthropic direct:
+# "ai_provider": "anthropic", "model": "claude-3-sonnet-20240229"
+
+# Or with local Ollama:
+# "ai_provider": "ollama", "model": "llama2"
 ```
 
 ### Search for Content

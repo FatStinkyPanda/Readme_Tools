@@ -52,6 +52,53 @@ providers:
     temperature: 0.7
     timeout: 60
 
+  openrouter:
+    enabled: true
+    base_url: "https://openrouter.ai/api/v1"
+    models:
+      - name: "anthropic/claude-3-opus"
+        max_tokens: 200000
+        supports_json: true
+        cost_per_1k_tokens:
+          input: 0.015
+          output: 0.075
+      - name: "anthropic/claude-3-sonnet"
+        max_tokens: 200000
+        supports_json: true
+        cost_per_1k_tokens:
+          input: 0.003
+          output: 0.015
+      - name: "openai/gpt-4-turbo"
+        max_tokens: 128000
+        supports_json: true
+        cost_per_1k_tokens:
+          input: 0.01
+          output: 0.03
+      - name: "openai/gpt-3.5-turbo"
+        max_tokens: 16385
+        supports_json: true
+        cost_per_1k_tokens:
+          input: 0.0005
+          output: 0.0015
+      - name: "google/gemini-pro"
+        max_tokens: 32768
+        supports_json: true
+        cost_per_1k_tokens:
+          input: 0.000125
+          output: 0.000375
+      - name: "meta-llama/llama-3-70b-instruct"
+        max_tokens: 8192
+        supports_json: false
+        cost_per_1k_tokens:
+          input: 0.00059
+          output: 0.00079
+    default_model: "anthropic/claude-3-sonnet"
+    temperature: 0.7
+    timeout: 60
+    # Optional: Your site URL and app name for OpenRouter rankings
+    site_url: "https://github.com/FatStinkyPanda/Readme_Tools"
+    app_name: "README Tools"
+
   ollama:
     enabled: false
     base_url: "http://localhost:11434"
